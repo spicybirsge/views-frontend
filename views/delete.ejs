@@ -1,0 +1,65 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Meta -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="views, views.gq, sharing, social, privacy, secure, socialmedia, information">
+    <meta name="description" content="Create, manage, and share cards, be it for your product or your aboutme or even your bussiness, and let the world know it!">
+    <meta name="og:title" content="Views">
+    <meta name="og:description" content="Create, manage, and share cards, be it for your product or your aboutme or even your bussiness, and let the world know it!">
+    <meta name="og:site_name" content="Views">
+    <meta name="og:image" content="/cdn/logo.png">
+    <meta name="image" content="/cdn/logo.png">
+    <meta name="og:theme-color" content="#3673fc">
+    <meta name="theme-color" content="#3673fc">
+    <meta name="main-color" content="#3673fc">
+    <!-- Others Stuff-->
+    <link rel="shortcut icon" href="/cdn/logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="/css/delete.css">
+    <link rel="stylesheet" href="/css/loading.css">
+    <title>Views | Confirm Deletion</title>
+</head>
+<body>
+    <ul>
+    <li><a href="/trending">Trending</a></li>
+    <li><a href="/dashboard">Dashboard</a></li>
+    <li class="account"><a href="/dashboard/account"><%= account.name %></a></li>
+  </ul>
+
+  <br><br><br><br><br><br><br><br><br><br>
+  <center>
+  <form action="/dashboard/<%= name%>/delete" method="POST" onsubmit="load()" autocomplete="off">
+      <h1><b>Please type: "I am aware that once I delete my card it cannot be restored"</b></h1>
+      <input type="text" id="text" class="text" required onkeyup="enablebtn()"></input><br><br>
+      <button class="create1" id="createb1" type="submit" disabled ><b>Delete<br></b></button>
+  </form></center>
+  <script>
+      function enablebtn() {
+          var x = document.getElementById('createb1')
+          var y = document.getElementById('text').value.toLowerCase()
+          if(y === "i am aware that once i delete my card it cannot be restored") {
+              x.disabled = false;
+
+          } else {
+              x.disabled = true;
+          }
+
+
+      }
+      function load() {
+
+const xy =document.getElementById("createb1")
+const buttonWidth = xy.offsetWidth;
+const buttonHeight = xy.offsetHeight
+xy.innerHTML = '<center><div class="dot-flashing" style="text-align: center;  height: 10px;"><br></div></center>'
+xy.style.width = `${buttonWidth}px`;
+xy.style.height = `${buttonHeight}px`
+
+}
+  </script>
+  
+    </body>
+    </html>

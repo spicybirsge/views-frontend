@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Meta -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="views, views.gq, sharing, social, privacy, secure, socialmedia, information">
+    <meta name="description" content="Create, manage, and share cards, be it for your product or your aboutme or even your bussiness, and let the world know it!">
+    <meta name="og:title" content="Views">
+    <meta name="og:description" content="Create, manage, and share cards, be it for your product or your aboutme or even your bussiness, and let the world know it!">
+    <meta name="og:site_name" content="Views">
+    <meta name="og:image" content="/cdn/logo.png">
+    <meta name="image" content="/cdn/logo.png">
+    <meta name="og:theme-color" content="#3673fc">
+    <meta name="theme-color" content="#3673fc">
+    <meta name="main-color" content="#3673fc">
+    <!-- Others Stuff-->
+    <link rel="shortcut icon" href="/cdn/logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="/css/manage.css">
+    <link rel="stylesheet" href="/css/loading.css">
+    <title>Manage Card | Views</title>
+</head>
+<body>
+    <ul>
+  
+        <li><a href="/trending">Trending</a></li>
+        <li><a href="/dashboard">Dashboard</a></li>
+        <li class="account"><a href="/dashboard/account"><%= account.name %></a></li>
+      </ul>
+
+      <br><br><br><br><br><br><br><br><br><br>
+      <div class="form">
+        <! –– pls don't bully me for using center tag. Too lazy to use css ––>
+      <center><form action="/dashboard/<%= data.name %>/manage" method="POST"  onsubmit="load()">
+        <label><b>Managing: <%= data.name || ""%></b></label><br><br><br>
+          
+          <label for="shortbio"><b>Short Description</b></label><br>
+          <input type="text" minlength="5" name="shortbio" id="shortbio" class="shortbio" required placeholder="Your cards short description." value="<%= data.shortbio || ""%>"></input><br><br>
+          <label for="description"><b>Long Description</b></label><br>
+          <textarea minlength="10" name="description" id="description" class="description" required placeholder="Describe your card. Markdown is supported." rows='20'><%= data.description || ""%></textarea><br><br> 
+          <label for="tags"><b>Tags</b></label><br>
+          <input type="text" minlength="1" name="tags" id="tags" class="tags" required placeholder="SEO tags. Split with commas." value="<%= data.tags || ""%>"></input><br><br>
+          <label for="location"><b>Location</b></label><br>
+          <input type="text"  name="location" id="location" class="location"  placeholder="Optional" value="<%= data.location || ""%>"></input><br><br>
+          <label for="theme"><b>Theme Color</b></label><br><br>
+          <input type="color" id="theme" name="theme" value="<%= data.theme || "#3673fc"%>"><br><br>
+          <label for="theme"><b>Gradient</b></label><br><br>  
+          <input type="color" id="gradient" name="gradient" value="<%= data.gradient || "black"%>"><br><br>
+          <label for="avatar"><b>Avatar url</b></label><br><br> 
+          <input type="url"  name="avatar" id="avatar" class="avatar"  placeholder="Image avatar url for your card." value="<%= data.avatar || ""%>"></input><br><br> 
+          <label for="link1name"><b>Link 1</b></label><br><br> 
+          <input type="text"  name="link1name" id="link1name" class="link1name"  placeholder="A name for your first link" value="<%= data.link1name || ""%>"></input>
+          <input type="url"  name="link1avatar" id="link1avatar" class="link1avatar"  placeholder="The image address of your link" value="<%= data.link1avatar || ""%>"></input>
+          <input type="url"  name="link1url" id="link1url" class="link1url"  placeholder="The url of your first link." value="<%= data.link1url || ""%>"> </input><br><br> 
+          <label for="link2name"><b>Link 2</b></label><br><br> 
+          <input type="text"  name="link2name" id="link2name" class="link2name"  placeholder="A name for your second link" value="<%= data.link2name || ""%>"></input>
+          <input type="url"  name="link2avatar" id="link2avatar" class="link2avatar"  placeholder="The image address of your link" value="<%= data.link2avatar || ""%>"></input>
+          <input type="url"  name="link2url" id="link2url" class="link2url"  placeholder="The url of your second link." value="<%= data.link2url || ""%>"></input><br><br>
+          <label for="link3name"><b>Link 3</b></label><br><br>
+          <input type="text"  name="link3name" id="link3name" class="link3name"  placeholder="A name for your third link" value="<%= data.link3name || ""%>"</input>
+          <input type="url"  name="link3avatar" id="link3avatar" class="link3avatar"  placeholder="The image address of your link" value="<%= data.link3avatar || ""%>"</input>
+          <input type="url"  name="link3url" id="link3url" class="link3url"  placeholder="The url of your third link." value="<%= data.link3url || ""%>"</input><br><br>
+          <label for="link4name"><b>Link 4</b></label><br><br>
+          <input type="text"  name="link4name" id="link4name" class="link4name"  placeholder="A name for your fourth link" value="<%= data.link4name || ""%>"</input>
+          <input type="url"  name="link4avatar" id="link4avatar" class="link4avatar"  placeholder="The image address of your link" value="<%= data.link4avatar || ""%>"</input>
+          <input type="url"  name="link4url" id="link4url" class="link4url"  placeholder="The url of your fourth link." value="<%= data.link4url || ""%>"</input><br><br>
+          <button class="createb" id="createb" type="submit" ><b>Save Updates<br></b></button>
+          <button class="create1" id="createb1" type="button" onclick="window.location.href='/dashboard/<%= data.name%>/delete'"><b>Delete<br></b></button>
+
+    </form>   </center>
+  
+    <br>
+    <br>
+    <br>
+    <br>
+    <br><br>
+    <br>
+    <br>
+    <br>
+    <br><br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <script>
+      function load() {
+      
+        const x = document.getElementById('createb')
+        const buttonWidth = x.offsetWidth;
+        const buttonHeight = x.offsetHeight
+        x.innerHTML = '<center><div class="dot-flashing" style="text-align: center;  height: 10px;"><br></div></center>'
+        x.style.width = `${buttonWidth}px`;
+        x.style.height = `${buttonHeight}px`
+      
+      }
+    </script>
+
+    </body>
+</html>

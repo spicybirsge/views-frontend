@@ -1,0 +1,62 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Meta -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="views, views.gq, sharing, social, privacy, secure, socialmedia, information">
+    <meta name="description" content="Create, manage, and share cards, be it for your product or your aboutme or even your bussiness, and let the world know it!">
+    <meta name="og:title" content="Views">
+    <meta name="og:description" content="Create, manage, and share cards, be it for your product or your aboutme or even your bussiness, and let the world know it!">
+    <meta name="og:site_name" content="Views">
+    <meta name="og:image" content="/cdn/logo.png">
+    <meta name="image" content="/cdn/logo.png">
+    <meta name="og:theme-color" content="#3673fc">
+    <meta name="theme-color" content="#3673fc">
+    <meta name="main-color" content="#3673fc">
+    <!-- Others Stuff-->
+    <link rel="shortcut icon" href="/cdn/logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="/css/dashboard.css">
+    <title>Views | Dashboard</title>
+</head>
+<body>
+    <ul>
+  
+        <li><a href="/trending">Trending</a></li>
+         <li><a href="https://discord.gg/wS3gyq736r">Discord</a></li>
+        <li class="account"><a href="/dashboard/account"><%= account.name %></a></li>
+      </ul>
+    <br><br><br><br>
+    <center><button class="new" id="new1" onclick="window.location.href='/dashboard/new'"><b>New Card</b></button></center>
+    <br><br><br>
+          <% if(data) { %>
+            <% data.forEach(d => { %>
+                
+                <div class="card-container">
+                <div class="card">
+                   
+                      <h4><b><%= d.name %></b></h4>
+                      
+                      <img src="<%= d.avatar || "/cdn/user.png"%>"  alt="logo" height="30" width="30" style='  border-radius: 50%;'" >
+             
+                       
+
+                      <br><br><br><br>
+                      <button class="new" onclick="window.location.href='/dashboard/<%= d.name%>/manage'"><b>Manage</b></button>
+                      <button class="new" onclick="window.location.href='/<%= d.owner%>/<%= d.name%>/'"><b>View</b></button>
+                    </div>&nbsp;
+                   
+              
+                  </div>
+                </div>
+      
+            <% }) %>
+          <% } %>
+ 
+      </div>
+      <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+     
+    </body>
+    </html>

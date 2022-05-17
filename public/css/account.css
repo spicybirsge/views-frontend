@@ -1,0 +1,58 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Kanit:wght@500&family=Montserrat:wght@200;300&family=Nanum+Gothic&display=swap');
+html, body {width: 100%;height: 100%;background-color:#f4f4f7;margin: 0px;}
+.new {border-radius: 15px; padding: 5px 28px; display: inline-block;border: 2px solid black;   cursor: pointer; font-family: 'Montserrat', sans-serif;}li {display: inline;}
+ul {
+ 
+    list-style-type: none;
+    margin: 0;
+ 
+    padding: 0;
+    overflow: hidden;
+    background-color: #3673fc;
+    
+    overflow: hidden;
+    width:100%;
+max-width: auto;
+}
+
+li a:hover {
+    background-color: #96afd6;
+  }
+
+li a {
+
+    font-family: 'Nanum Gothic', sans-serif;
+    display: inline-block;
+    color: black;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+  .account {
+    float: right;
+  }
+
+   h1{
+       text-align: center;
+       font-family: 'Nanum Gothic', sans-serif;
+   }
+   p {
+   
+    font-family: 'Nanum Gothic', sans-serif;
+    text-align: center;
+
+   }
+   h2{
+    text-align: center;
+    font-family: 'Nanum Gothic', sans-serif;
+}
+label {
+    font-family: 'Montserrat', sans-serif;
+
+    
+    
+  }
+  input[type=password] { text-align: center;font-weight: 900;width:35%;margin: 0;border-radius: 10px; padding: 10px 10px; display: inline-block;border: 2px solid black;    font-family: 'Montserrat', sans-serif; box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19); margin-right: auto; margin-left: auto;}
+
+  .update{border-radius: 10px; width:37%; padding: 10px 10px; border: 2px solid red;   cursor: pointer; font-family: 'Montserrat', sans-serif; box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);}
+  ::-webkit-scrollbar{display: none;}

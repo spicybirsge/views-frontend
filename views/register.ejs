@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Meta -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="views, views.gq, sharing, social, privacy, secure, socialmedia, information">
+    <meta name="description" content="Create, manage, and share cards, be it for your product or your aboutme or even your bussiness, and let the world know it!">
+    <meta name="og:title" content="Register Views">
+    <meta name="og:description" content="Create, manage, and share cards, be it for your product or your aboutme or even your bussiness, and let the world know it!">
+    <meta name="og:site_name" content="Views">
+    <meta name="og:image" content="/cdn/logo.png">
+    <meta name="image" content="/cdn/logo.png">
+    <meta name="og:theme-color" content="#3673fc">
+    <meta name="theme-color" content="#3673fc">
+    <meta name="main-color" content="#3673fc">
+    <!-- Others Stuff-->
+    <link rel="shortcut icon" href="/cdn/logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="/css/register.css">
+    <link rel="stylesheet" href="/css/loading.css">
+    <title>Views | Register</title>
+ 
+   
+</head>
+<body>
+  <br><br><br>
+  <br><br><br>  <br><br><% if(msg) { %> 
+    <center><h1 style="color: red;"><b><%= msg%></b></h1></center><br><br>
+    <% } else {%><center><h1 style="color: black;"><b>Register a new account</b></h1></center><br><br>
+      <% } %>
+<center><form class="form" action="/register" method="POST" onsubmit="load()">
+  <input type="text" id="name" name="name"required placeholder="Username" ></input><br><br>
+  <input type="email" id="email" name="email"required placeholder="Email" ></input><br><br>
+  <input type="password" id="password" minlength="5" name="password"required placeholder="password"></input><br><br>
+  <button class="loginb" id="loginb"type="submit" ><b>Register</b></button><br>
+  <p class="formp"><a href="/login">Already have an account?</a></p>
+</form></center>
+<script>
+  function load() {
+
+const x =document.getElementById("loginb")
+const buttonWidth = x.offsetWidth;
+const buttonHeight = x.offsetHeight
+x.innerHTML = '<center><div class="dot-flashing" style="text-align: center;  height: 10px;"><br></div></center>'
+x.style.width = `${buttonWidth}px`;
+x.style.height = `${buttonHeight}px`
+
+}
+</script>
+
+</body>
+</html>

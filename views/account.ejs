@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Meta -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="views, views.gq, sharing, social, privacy, secure, socialmedia, information">
+    <meta name="description" content="Create, manage, and share cards, be it for your product or your aboutme or even your bussiness, and let the world know it!">
+    <meta name="og:title" content="Views">
+    <meta name="og:description" content="Create, manage, and share cards, be it for your product or your aboutme or even your bussiness, and let the world know it!">
+    <meta name="og:site_name" content="Views">
+    <meta name="og:image" content="/cdn/logo.png">
+    <meta name="image" content="/cdn/logo.png">
+    <meta name="og:theme-color" content="#3673fc">
+    <meta name="theme-color" content="#3673fc">
+    <meta name="main-color" content="#3673fc">
+    <!-- Others Stuff-->
+    <link rel="shortcut icon" href="/cdn/logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="/css/account.css">
+    <link rel="stylesheet" href="/css/loading.css">
+    <title>Views | Account</title>
+</head>
+<body>
+    <ul>
+  
+        <li><a href="/trending">Trending</a></li>
+         <li><a href="/dashboard">Dashboard</a></li>
+        <li class="account"><a href="/logout" >Logout</a></li>
+      </ul>
+      <h1>Hello <%= account.name %> </h1><br><br>
+
+      <p> <b>Name:</b> <b><%= account.name %></b> <br><br> <b>Email:</b> <b><%= account.email %></b></p>
+      <br><br><br>
+      <% if (msg) {%> 
+        <h2 style="color: red;"><%= msg%></h2><br><br>
+        <% } else{  %>
+      <h2>Change Password:</h2><br><br>
+      <% } %>
+      <center>
+          <form action="/dashboard/account" method="POST" onsubmit="load()">
+              <label for="password"><b>Old password:</b></label><br><br>
+            <input minlength="5"type="password" id="password" class="password" name="password" placeholder="Old password" required></input><br><br>
+            <label for="newpassword"><b>New password:</b></label><br><br>
+            <input minlength="5" type="password" id="newpassword" class="newpassword" name="newpassword" placeholder="New password" required></input><br><br>
+            <label for="confirmnewpassword"><b>Confirm new password:</b></label><br><br>
+            <input minlength="5" type="password" id="confirmnewpassword" class="confirmnewpassword" name="confirmnewpassword" placeholder="Confirm new password" required></input><br><br>
+            <button class="update" id="update"type="submit" ><b>Change<br></b></button>
+        </form>
+      </center>
+      <script>
+        function load() {
+      
+          const x =document.getElementById("update")
+          const buttonWidth = x.offsetWidth;
+          const buttonHeight = x.offsetHeight
+          x.innerHTML = '<center><div class="dot-flashing" style="text-align: center;  height: 10px;"><br></div></center>'
+          x.style.width = `${buttonWidth}px`;
+          x.style.height = `${buttonHeight}px`
+        
+        }
+      </script>
+      <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    </body>
+</html>
