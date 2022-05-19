@@ -40,7 +40,7 @@
                       <h4><b><%= d.name %> by <%= d.owner%></b></h4>
                       <p><b>Views: <%= d.views %></b></p>
                       
-                      <img src="<%= d.avatar || "/cdn/user.png"%>"  alt="logo" height="30" width="30" style='  border-radius: 50%;'" >
+                      <img src="<%= d.avatar || "/cdn/user.png"%>" onerror="this.src='/cdn/user.png'" alt="logo" height="30" width="30" style='  border-radius: 50%;'" >
              
                        
 

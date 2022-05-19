@@ -24,7 +24,7 @@
 </head>
 <body><br><br><br><br><br>
     <center>
-        <img src="<%= data.avatar || "/cdn/user.png"%>"  alt="logo" height="100" width="100" style='  border-radius: 50%;'" >
+        <img src="<%= data.avatar || "/cdn/user.png"%>"onerror="this.src='/cdn/user.png'"  alt="logo" height="100" width="100" style='  border-radius: 50%;'" >
      
     </center>
     <h1><%= data.name %></h1>
@@ -36,25 +36,25 @@
  
    <% if(data.link1url) {%>
     <center>
-<div class="links">  <img src="<%= data.link1avatar || "/cdn/user.png"%>"  alt="logo" height="30" width="30" style='  border-radius: 50%;'" ><br>
+<div class="links">  <img src="<%= data.link1avatar || "/cdn/user.png"%>" onerror="this.src='/cdn/user.png'" alt="logo" height="30" width="30" style='  border-radius: 50%;'" ><br>
     <a href="<%= data.link1url%>" class="button"><%= data.link1name%></a></div> </center> <br>
 
     <%}%>
     <% if(data.link2url) {%>
         <center>
-    <div class="links">  <img src="<%= data.link2avatar || "/cdn/user.png"%>"  alt="logo" height="30" width="30" style='  border-radius: 50%;'" ><br>
+    <div class="links">  <img src="<%= data.link2avatar || "/cdn/user.png"%>" onerror="this.src='/cdn/user.png'" alt="logo" height="30" width="30" style='  border-radius: 50%;'" ><br>
         <a href="<%= data.link2url%>" class="button"><%= data.link2name%></a></div> </center> <br>
     
         <%}%>
         <% if(data.link3url) {%>
             <center>
-        <div class="links">  <img src="<%= data.link3avatar || "/cdn/user.png"%>"  alt="logo" height="30" width="30" style='  border-radius: 50%;'" ><br>
+        <div class="links">  <img src="<%= data.link3avatar || "/cdn/user.png"%>"onerror="this.src='/cdn/user.png'"  alt="logo" height="30" width="30" style='  border-radius: 50%;'" ><br>
             <a href="<%= data.link3url%>" class="button"><%= data.link3name%></a></div> </center> <br>
         
             <%}%>
             <% if(data.link4url) {%>
                 <center>
-            <div class="links">  <img src="<%= data.link4avatar || "/cdn/user.png"%>"  alt="logo" height="30" width="30" style='  border-radius: 50%;'" ><br>
+            <div class="links">  <img src="<%= data.link4avatar || "/cdn/user.png"%>"  onerror="this.src='/cdn/user.png'" alt="logo" height="30" width="30" style='  border-radius: 50%;'" ><br>
                 <a href="<%= data.link4url%>" class="button"><%= data.link4name%></a></div> </center> 
                 <%}%>
                 <p><b>Views: <%= data.views%></b></p><br>
