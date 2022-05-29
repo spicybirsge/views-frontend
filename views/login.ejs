@@ -12,43 +12,46 @@
     <meta name="og:site_name" content="Views">
     <meta name="og:image" content="/cdn/logo.png">
     <meta name="image" content="/cdn/logo.png">
-    <meta name="og:theme-color" content="#3673fc">
-    <meta name="theme-color" content="#3673fc">
-    <meta name="main-color" content="#3673fc">
+    <meta name="og:theme-color" content="#2c2cac">
+    <meta name="theme-color" content="#2c2cac">
+    <meta name="main-color" content="#2c2cac">
     <!-- Others Stuff-->
     <link rel="shortcut icon" href="/cdn/logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="/css/auth.css">
-    <link rel="stylesheet" href="/css/loading.css">
     <title>Views | Login</title>
  
    
 </head>
 <body>
-  <br><br><br>
-  <br><br><br>  <br><br><% if(msg) { %> 
-    <center><h1 id='loading'style="color: red;"><b><%= msg%></b></h1></center><br><br>
-    <% } else {%><center><h1 style="color: black;"><b>Login to views</b></h1></center><br><br>
-      <% } %>
-<center><form class="form" action="/login" method="POST" onsubmit="load()">
-
-  <input type="email" id="email" name="email"required placeholder="Email" ></input><br><br>
-  <input type="password" id="password" minlength="5" name="password"required placeholder="password"></input><br><br>
-  <button class="loginb" id="loginb"type="submit" ><b>Login<br></b></button>
-  <br>
-  <p class="formp"><a href="/register">Don't have an account?</a></p>
-
-</form></center>
-<script>
-  function load() {
-
-    const x =document.getElementById("loginb")
-    const buttonWidth = x.offsetWidth;
-    const buttonHeight = x.offsetHeight
-    x.innerHTML = '<center><div class="dot-flashing" style="text-align: center;  height: 10px;"><br></div></center>'
-    x.style.width = `${buttonWidth}px`;
-    x.style.height = `${buttonHeight}px`
   
-  }
-</script>
+  <br><br><br>  <br><br><% if(msg) { %> 
+    <center><h1 id='msg'style="color: red;"><b><%= msg%></b></h1></center><br><br>
+    <% } else {%><center><h1 style="color: white;" id="msg">Login to views</h1></center><br><br>
+      <% } %>
+     
+      <form   class="col-lg-6 offset-lg-3" action="/login" method="POST"onsubmit="load()">
+        <div class="form-group">
+          <label for="email" style="color: white !important;">Email</label>
+          <input type="email" name="email"class="form-control" id="email" aria-describedby="email" placeholder="Email" required>
+        
+        </div>
+        <div class="form-group">
+          <label for="password" style="color: white !important;">Password</label>
+          <input type="password" name="password" class="form-control" id="password" placeholder="Password" required>
+        </div>
+
+        <button type="submit" class="btn btn-success" id="loginb">Login</button>
+        <a href="/register" class="btn btn-outline-light" role="button" aria-pressed="true" style="text-align: right !important;">New account</a>
+      
+      </form>
+      <br> <br> <br> <br> <br>
+  
+  
+<script src="/scripts/script.js"></script>
 </body>
+
 </html>
