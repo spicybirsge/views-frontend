@@ -18,116 +18,78 @@
     <!-- Others Stuff-->
     <link rel="shortcut icon" href="<%= data.avatar || '/cdn/logo.png' %>" type="image/x-icon">
     <link rel="stylesheet" href="/css/card.css">
-    <link rel="stylesheet" href="/css/loading.css">
+   
     <script src="https://kit.fontawesome.com/f770524c22.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <title><%= data.name %></title>
-</head>
-<body><br><br><br><br><br>
-    <center>
-        <img src="<%= data.avatar || "/cdn/user.png"%>"onerror="this.src='/cdn/user.png'"  alt="logo" height="100" width="100" style='  border-radius: 50%;'" >
-     
-    </center>
-    <h1><%= data.name %></h1>
-    <p><b><%= data.shortbio || 'Unknown description' %></b></p>
+</head><body> <br><br><br>
+    <img src="<%= data.avatar%>" onerror="this.src='/cdn/user.png'" class="rounded mx-auto d-block" alt="logo" height="100" width="100" style="border-radius: 50% !important;">
+    <p class="h2" style="text-align: center;"><b><%= data.name%></b></p>
+    <p class="h5" style="text-align: center;"><b><%= data.shortbio%></b></p>
     <% if(data.location) {%>
-        <center><p><i class='fas fa-map-marker-alt' style='font-size:16px'></i><b> <%= data.location%></b></p><br></center>
+        <p class="h5" style="text-align: center;"><i class='fas fa-map-marker-alt' style='font-size:16px'></i> <b><%= data.location%></b></p>
         <%}%>
-    <div class="md" id="md"></div><br><br>
- 
-   <% if(data.link1url) {%>
-    <center>
-<div class="links">  <img src="<%= data.link1avatar || "/cdn/user.png"%>" onerror="this.src='/cdn/user.png'" alt="logo" height="30" width="30" style='  border-radius: 50%;'" ><br>
-    <a href="<%= data.link1url%>" class="button"><%= data.link1name%></a></div> </center> <br>
+    <div class="mx-auto" style="width: fit-content; max-width: 65%">
+    <div class="card">
+        <div class="card-body" id="md"></div></div><br>
+        <% if(data.links) {%>
+            <% data.links.forEach(d => { %> 
+                <div class="link1">
+    <a href="<%= d.link%>" target="_blank" class="btn btn-outline-danger" id="link"> <img src="<%= d.avatar%>"  onerror="this.src='/cdn/user.png'" alt="logo" height="30" width="30" style="border-radius: 50%;"> <b><%= d.name%></b></a><br>
+</div>
+    <%})%>
 
-    <%}%>
-    <% if(data.link2url) {%>
-        <center>
-    <div class="links">  <img src="<%= data.link2avatar || "/cdn/user.png"%>" onerror="this.src='/cdn/user.png'" alt="logo" height="30" width="30" style='  border-radius: 50%;'" ><br>
-        <a href="<%= data.link2url%>" class="button"><%= data.link2name%></a></div> </center> <br>
-    
-        <%}%>
-        <% if(data.link3url) {%>
-            <center>
-        <div class="links">  <img src="<%= data.link3avatar || "/cdn/user.png"%>"onerror="this.src='/cdn/user.png'"  alt="logo" height="30" width="30" style='  border-radius: 50%;'" ><br>
-            <a href="<%= data.link3url%>" class="button"><%= data.link3name%></a></div> </center> <br>
-        
-            <%}%>
-            <% if(data.link4url) {%>
-                <center>
-            <div class="links">  <img src="<%= data.link4avatar || "/cdn/user.png"%>"  onerror="this.src='/cdn/user.png'" alt="logo" height="30" width="30" style='  border-radius: 50%;'" ><br>
-                <a href="<%= data.link4url%>" class="button"><%= data.link4name%></a></div> </center> 
-                <%}%>
-                <p><b>Views: <%= data.views%></b></p><br>
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Kanit:wght@500&family=Montserrat:wght@200;300&family=Nanum+Gothic&display=swap');
-html, body { background-attachment: fixed; margin: 0px; width: 100%;height: 100%;background-image: linear-gradient(to bottom right, <%= data.theme %>,  <%= data.gradient %>); }
+           <%}%>
+        </div><br>
+        <p class="h5" style="text-align: center;"><b>Views: <%= data.views%></b></p>
 
-    .md img{
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Heebo:wght@200&family=Kanit:wght@500&family=Montserrat:wght@200;300&family=Nanum+Gothic&display=swap');
+        html, body {
+           font-family: 'Heebo', sans-serif !important; font-weight: 900;background-attachment: fixed;    margin: 0;background-image: linear-gradient(to bottom right, <%= data.theme || 'white'%>, <%= data.gradient || 'black'%>);
+        }
+        .link1{
+            margin-bottom: 2%;
+        }
+        #link{
+            width: 100%;
+            border: 2px solid black !important;
+            color: black;
+        }
+        #link:focus {
+outline: none;
+box-shadow: none;
+}
+        #link:hover{
+            border: 2px solid white !important;
+            color: black;
+            background-color: white;
+        }
+        .card {
+            background-color: transparent;
+            border: 2px solid black;
+        }
+        .card-body img{
         max-width: 95%;
         margin-left: 1.5%;
     }
-
-h1 {
-    color: black;
-    text-align: center;
-    font-family: 'Nanum Gothic', sans-serif;
-}
-p {
-    color: black;
-    text-align: center;
-    font-family: 'Nanum Gothic', sans-serif;
-    
-
-}
-.md {
-    border: 2px solid black; 
-    border-radius: 10px;
-   
-margin-left: 30%;
-    display: block;
-    width: 39%;
-
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script>
   
-    font-family: 'Nanum Gothic', sans-serif;
- 
-    max-height: fit-content;
+        const description = <%- JSON.stringify(data.description || 'Unknown Description').replace(new RegExp('<[^>]*>', 'g'), '') %>
+    document.getElementById('md').innerHTML = marked.parse(description);
+      </script>
+      <style>
+        @media only screen and (max-width: 800px) {
+            .mx-auto{
+                max-width: 90% !important;
+            }
 
-   
-}
-.md h2, h2, h3, h4, h5, h6 {
-    text-align: center;
-} 
-.md p {
-    margin-left: 1.5%;
-    text-align: left;
-}
-@media only screen and (max-width: 1000px) {
-    .md {
-        border: 2px solid black; 
-    border-radius: 10px;
-   
-margin-left: 13%;
-    display: block;
-    width: 74%;
-   
-  
-    font-family: 'Nanum Gothic', sans-serif;
-
-    }
-
-}
-
-
-::-webkit-scrollbar{display: none;}
-</style>
-<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-<script>
-  
-    const description = <%- JSON.stringify(data.description).replace(new RegExp('<[^>]*>', 'g'), '') %>
-document.getElementById('md').innerHTML = marked.parse(description);
-  </script>
-
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-    </body>
-
-    </html>
+        }
+      </style>
+      <br><br><br><br><br><br>
+</body></html>

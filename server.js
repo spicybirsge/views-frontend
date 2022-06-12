@@ -1,3 +1,4 @@
+require('dotenv').config()
 const express = require("express")
 const app = express()
 const logger = require('morgan');
@@ -11,12 +12,13 @@ app.use(logger('dev'));
 app.use(cookies());
 const error = require('./middleware/handler');
 app.use(express.urlencoded({ extended: false }))
+app.use(express.json())
 app.use(express.static('public'))
 app.use(error)
 const isnotauthenticated = require('./middleware/isnotauthenticated')
 const isauthenticated = require('./middleware/isauthenticated');
 const fetch = require('node-fetch')
-const qs = require('querystring')
+//const qs = require('querystring')
 app.get('/dashboard/:name/manage', isauthenticated , async (req, res) => {
   const name = req.params.name
   const owner = req.account.name
@@ -35,8 +37,59 @@ app.get('/dashboard/:name/manage', isauthenticated , async (req, res) => {
  return res.sendStatus(404)
   })
 })
-app.get('/dashboard/new', isauthenticated , async (req, res) => {
-  res.render('new.ejs', {account: req.account, msg: null})
+app.get('/dashboard/:name/analyze', isauthenticated , async (req, res) => {
+  const name = req.params.name
+  const owner = req.account.name
+  const backend = process.env.BACKEND_URL+'/api/crud/getcardwithoutviewsupdate'  
+  await fetch(backend, {
+    method: 'POST',
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({owner:owner, name:name})
+  }).then(res => res.json()).then(async(data) => {
+ if(data.success) {
+  return res.render('analyze.ejs', {account: req.account, msg: null, data: data.data})
+ }
+ console.log(data)
+ return res.sendStatus(404)
+  })
+})
+app.get('/dashboard/:name/settings', isauthenticated , async (req, res) => {
+  const name = req.params.name
+  const owner = req.account.name
+  const backend = process.env.BACKEND_URL+'/api/crud/getcardwithoutviewsupdate'  
+  await fetch(backend, {
+    method: 'POST',
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({owner:owner, name:name})
+  }).then(res => res.json()).then(async(data) => {
+ if(data.success) {
+  return res.render('settings.ejs', {account: req.account, msg: null, data: data.data})
+ }
+ console.log(data)
+ return res.sendStatus(404)
+  })
+})
+app.get('/dashboard/:name/links', isauthenticated , async (req, res) => {
+  const name = req.params.name
+  const owner = req.account.name
+  const backend = process.env.BACKEND_URL+'/api/crud/getcardwithoutviewsupdate'  
+  await fetch(backend, {
+    method: 'POST',
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({owner:owner, name:name})
+  }).then(res => res.json()).then(async(data) => {
+ if(data.success) {
+  return res.render('links.ejs', {account: req.account, msg: null, data: data.data})
+ }
+ console.log(data)
+ return res.sendStatus(404)
+  })
 })
 app.get('/dashboard/account', isauthenticated, async (req, res) => {
   res.render('account.ejs', {account: req.account, msg: null})
@@ -72,10 +125,10 @@ app.get('/dashboard', isauthenticated , async(req, res) => {
       }
     }).then(res => res.json()).then(async(data) => {
       if(data.success) {
-        return res.render('dashboard.ejs', {data: data.data, account: req.account})
+        return res.render('dashboard.ejs', {data: data.data, account: req.account, msg: null})
       }
 
-        return res.render('dashboard.ejs', {data: undefined, account: req.account})
+        return res.render('dashboard.ejs', {data: undefined, account: req.account, msg: null})
       
     })
 
@@ -85,10 +138,7 @@ app.get('/dashboard', isauthenticated , async(req, res) => {
   }
 
 })
-app.get('/dashboard/:name/delete', isauthenticated, async (req, res) => {
-  res.render('delete.ejs', {account: req.account, name: req.params.name})
 
-})
 app.post('/login', async (req, res) => {
     const backend = process.env.BACKEND_URL+'/api/auth/login'  
     try {
@@ -181,7 +231,7 @@ const token = req.cookies.token;
 const blacklist = new RegExp("^[A-Za-z0-9._~()'!*:@,;+?-]*$", 'i')
 
 if(!blacklist.test(req.body.name)) {
-  return res.render('new.ejs', {msg: 'Name cannot have spaces, or non url friendly characters.', account: req.account})
+  return res.send(`Name cannot have spaces, or non url friendly characters. Go <a href='/dashboard'>back?</a>`)
 }
  try {
   await fetch(backend, {
@@ -191,12 +241,15 @@ if(!blacklist.test(req.body.name)) {
       "token": token
      
     },
-    body: JSON.stringify(req.body)
+    body: JSON.stringify({ name: req.body.name,
+      tags: req.body.tags }),
+    
   }).then(res => res.json()).then(async(data) => {
+
     if(data.success) {
       res.redirect(`/dashboard/${req.body.name}/manage`)
     } else {
-      res.render('new.ejs', {msg: data.msg || data.errors[0].msg, account: req.account})
+      res.send(`${data.msg || data.errors[0].msg || 'Unknown Error'} go <a href='/dashboard'>back?</a> `)
     }
   })
 } catch {
@@ -205,65 +258,7 @@ if(!blacklist.test(req.body.name)) {
 
 
 })
-app.post('/dashboard/:name/manage', isauthenticated, async(req, res) => {
-  const backend = process.env.BACKEND_URL+'/api/crud/update'
-  const token = req.cookies.token;
 
-   
-
-    
-  
-   
-
- try { 
-
-  await fetch(backend, {
-    headers: {
-      "Content-Type":"application/json",
-      "token": token
-    },
-    method: 'POST',
-    body: JSON.stringify({  
-      name: req.params.name,
-     
-      avatar: req.body.avatar || null,
-  
-  
-      tags: req.body.tags,
-      location: req.body.location || null,
-      theme: req.body.theme || "#3673fc",
-      gradient: req.body.gradient || "#000000",
-      shortbio: req.body.shortbio,
-      description: req.body.description,
-      
-      link1name: req.body.link1name || null,
-      link1avatar: req.body.link1avatar || null,
-      link1url: req.body.link1url || null,
-    
-      link2name: req.body.link2name || null,
-      link2avatar: req.body.link2avatar || null,
-      link2url: req.body.link2url || null,
-    
-      link3name: req.body.link3name || null,
-      link3avatar: req.body.link3avatar || null,
-      link3url: req.body.link3url || null,
-      
-      link4name: req.body.link4name || null,
-      link4avatar: req.body.link4avatar || null,
-      link4url: req.body.link4url || null})
-  }).then(res => res.json()).then(async(data) => {
-    if(data.success) {
-      return res.render('manage.ejs',  {account: req.account, msg: null, data: data.datatoupdate})
-    }
-    console.log(data)
-    return res.render('manage.ejs', {account: req.account, msg: "Validation Error Occured!", data: req.body})
-  })
-} catch(e) {
-
-  res.sendStatus(500)
-}
-
-})
 
 app.post('/dashboard/:name/delete', isauthenticated, async(req , res) => {
   const backend = process.env.BACKEND_URL+'/api/crud/delete'
@@ -316,6 +311,9 @@ await fetch(backend, {
   return res.sendStatus(500)
 }
 })
+app.get('/dashboard/docs', async (req, res) => {
+  res.render('docs.ejs')
+})
 app.get('/logout', isauthenticated, async (req , res)=> {
    res.clearCookie("token");
   return res.redirect('/')
@@ -367,6 +365,85 @@ app.get('/terms', async (req, res) => {
 })
 app.get('/privacy', async(req, res)=> {
   res.render('privacy.ejs')
+})
+
+app.post('/dashboard/:type/:name/update', isauthenticated, async (req, res) => {
+  const name = req.params.name
+  const type = req.params.type
+  const backend = process.env.BACKEND_URL+`/api/crud/update/${type}`
+  try {
+    await fetch(backend, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'token': req.cookies.token
+      }, 
+      body: JSON.stringify(req.body)
+    }).then(res => res.json()).then(async(data) => {
+      if(data.success) {
+        return res.json({success: true, msg: 'Changes are UpToDate...'})
+      } else {
+        return res.json({success: false, msg: data.msg, errors: data.errors[0].msg || data.errors || 'Internal Server Error'})
+      }
+    })
+  } catch {
+    res.json({sucess: false, msg: 'Internal Server Error', errors: 'Internal Server Error'})
+  }
+})
+
+app.post('/dashboard/:name/links', isauthenticated, async (req , res) => {
+  const cardname = req.params.name;
+  const name = req.body.name;
+  const link = req.body.link;
+  const avatar = req.body.avatar || null
+  const body = JSON.stringify({linkname: name, name: cardname, link: link, avatar: avatar})
+  const backend = process.env.BACKEND_URL+`/api/crud/addlink/`
+  try {
+    await fetch(backend, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'token': req.cookies.token
+      },
+      body: body
+    }).then(res => res.json()).then(async(data) => {
+      if(data.success) {
+        return res.redirect(`/dashboard/${cardname}/links`)
+      } else {
+        return res.send(`An error occured: ${data.msg || data.errors[0].msg || data.errors || 'Internal Server Error'}. Go <a href="/dashboard/${cardname}/links">back?</a> `)
+      }
+    })
+  } catch {
+    return res.sendStatus(500)
+  }
+})
+
+app.post('/dashboard/:name/links/delete', isauthenticated, async(req, res) => {
+  const name = req.params.name
+  const linkname = req.query.linkname
+  const body = JSON.stringify({name: name, linkname: linkname})
+  const backend = process.env.BACKEND_URL+`/api/crud/deletelink/`
+  try {
+    await fetch(backend, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'token': req.cookies.token
+
+      },
+      body: body
+    }).then(res => res.json()).then(async(data) => {
+      if(data.success) {
+        return res.redirect(`/dashboard/${name}/links`)
+      } else {
+        return res.send(`An error occured: ${data.msg || data.errors[0].msg || data.errors || 'Internal Server Error'}. Go <a href="/dashboard/${cardname}/links">back?</a> `)
+      }
+    })
+  } catch {
+    
+    res.sendStatus(500)
+  }
+  
 })
 
 // always keep last
