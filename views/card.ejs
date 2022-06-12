@@ -48,9 +48,10 @@
 
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Heebo:wght@200&family=Kanit:wght@500&family=Montserrat:wght@200;300&family=Nanum+Gothic&display=swap');
-        html, body {
+        html, body {height: 100%;
            font-family: 'Heebo', sans-serif !important; font-weight: 900;background-attachment: fixed;    margin: 0;background-image: linear-gradient(to bottom right, <%= data.theme || 'white'%>, <%= data.gradient || 'black'%>);
         }
+::-webkit-scrollbar{display:none}
         .link1{
             margin-bottom: 2%;
         }
