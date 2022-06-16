@@ -102,6 +102,12 @@
     <button class="btn btn-secondary" id="updategradientbtn" onclick="updategradient(`<%= data.name%>`)">Save Gradient</button>
     <hr style="text-align:center;color:gray;background-color:gray">
 </div>
+<div class="form-group">
+  <label for="gradient">Chose your Cards font color.</label>
+  <input type="color" class="form-control" id="fontcolor" name="fontcolor" value="<%= data.fontcolor || '#212529'%>" title="Chose your cards font color!"><br>
+  <button class="btn btn-secondary" id="updatefontbtn" onclick="updatefont(`<%= data.name%>`)">Save Font</button>
+  <hr style="text-align:center;color:gray;background-color:gray">
+</div>
 <form action="/dashboard/<%= data.name%>/delete" method="POST" onsubmit="load()">
 <div class="form-group">
   <label>To Delete: Please type: 'I am aware that this decision is final'</label>
@@ -123,6 +129,15 @@
     border: 1px solid silver !important;
   }
   #tags:focus{
+    box-shadow: none;
+  }
+  #fontcolor{
+    color: white !important;
+    background-color: rgba(85, 85, 85, 0.616);
+    border: 0px solid silver !important;
+
+  }
+  #fontcolor:focus{
     box-shadow: none;
   }
   #avatar {

@@ -222,6 +222,41 @@ async function updateavatar(y) {
 }
 
 }
+async function updatefont(y) {
+    const URL = BASE_URL+`/dashboard/fontcolor/${y}/update`;
+    var info = document.getElementById('updatefontbtn');
+    info.disabled = true;
+    info.innerText = `Saving Font Color...`
+    const fontcolor = document.getElementById('fontcolor').value;
+    const body = JSON.stringify({name: y, fontcolor: fontcolor});
+    try {
+        await fetch(URL, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            }, 
+                body: body
+            
+        }).then(res => res.json()).then(async(data) => {
+            if(data.success) {
+                info.innerText = `Changes Saved!`
+                setTimeout(() => {
+                    info.disabled = false;
+                    info.innerText = `Save Font`;
+                }, 2000)
+            }
+       
+        })
+    } catch {
+        info.innerText = `Error Saving Changes, Retry?`;
+        setTimeout(() => {
+            info.disabled = false;
+            info.innerText = `Save Font`;
+        }, 2000)
+    
+    }
+
+}
 function undisable() {
     var btn = document.getElementById(`deletebtn`)
     var text = document.getElementById(`deleter`).value;

@@ -50,15 +50,15 @@
         @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Heebo:wght@200&family=Kanit:wght@500&family=Montserrat:wght@200;300&family=Nanum+Gothic&display=swap');
         body {height: 100%;
            font-family: 'Heebo', sans-serif !important; font-weight: 900;background-attachment: fixed;    margin: 0;background-image: linear-gradient(to bottom right, <%= data.theme || 'white'%>, <%= data.gradient || 'black'%>);
-        }
+        color: <%= data.fontcolor || '#212529'%>;}
 ::-webkit-scrollbar{display:none}
         .link1{
             margin-bottom: 2%;
         }
         #link{
             width: 100%;
-            border: 2px solid black !important;
-            color: black;
+            border: 2px solid <%= data.fontcolor || '#212529'%> !important;
+           color: <%= data.fontcolor || '#212529'%>;
         }
         #link:focus {
 outline: none;
@@ -71,7 +71,7 @@ box-shadow: none;
         }
         .card {
             background-color: transparent;
-            border: 2px solid black;
+            border: 2px solid <%= data.fontcolor || '#212529'%>;
         }
         .card-body img{
         max-width: 95%;
