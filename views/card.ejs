@@ -56,22 +56,21 @@
             margin-bottom: 2%;
         }
         #link{
+
             width: 100%;
-            border: 2px solid <%= data.fontcolor || '#212529'%> !important;
+            border-radius: 17px;
+            border: 1px solid rgba(192, 192, 192, 0.829) !important;
+            background-color: rgb(245, 243, 243, 0.3);;
            color: <%= data.fontcolor || '#212529'%>;
         }
         #link:focus {
 outline: none;
 box-shadow: none;
 }
-        #link:hover{
-            border: 2px solid white !important;
-            color: black;
-            background-color: white;
-        }
+      
         .card {
-            background-color: transparent;
-            border: 2px solid <%= data.fontcolor || '#212529'%>;
+            background-color: rgb(245, 243, 243, 0.3);
+            border-radius: 17px;
         }
         .card-body img{
         max-width: 95%;

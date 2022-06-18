@@ -89,7 +89,7 @@
                         
                             <img src="<%= d.avatar%>"  onerror="this.src='/cdn/user.png'" alt="logo" height="30" width="30" style="border-radius: 50%;"><br>
                         <b><a class="linker" href="<%= d.link%>" target="__blank"><%= d.name%></a></b><br><br>
-                        <form action="/dashboard/<%= data.name%>/links/delete?linkname=<%= d.name%>" method="POST" onsubmit="deletelink('<%=d.name%>')">
+                        <form action="/dashboard/<%= data.name%>/links/delete?linkname=<%- encodeURIComponent(d.name)%>" method="POST" onsubmit="deletelink('<%=d.name%>')">
                       <button type="submit" id="<%=d.name%>"class="btn btn-danger" style="border: 1px solid transparent !important;"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
                         <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
                       </svg> <b>Delete</b></button>
