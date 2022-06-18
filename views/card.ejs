@@ -38,7 +38,7 @@
         <% if(data.links) {%>
             <% data.links.forEach(d => { %> 
                 <div class="link1">
-    <a href="<%= d.link%>" target="_blank" class="btn btn-outline-danger" id="link"> <img src="<%= d.avatar%>"  onerror="this.src='/cdn/user.png'" alt="logo" height="30" width="30" style="border-radius: 50%;"><br> <b><%= d.name%></b></a><br>
+    <a href="<%= d.link%>" target="_blank" class="btn btn-outline-danger" id="link"> <img src="<%= d.avatar%>"  onerror="this.src='/cdn/user.png'" alt="logo" height="30" width="30" style="border-radius: 50%;"><br> <b><%= d.name%></b></a>
 </div>
     <%})%>
 
@@ -53,7 +53,7 @@
         color: <%= data.fontcolor || '#212529'%>;}
 ::-webkit-scrollbar{display:none}
         .link1{
-            margin-bottom: 2%;
+            margin-bottom: 1%;
         }
         #link{
 
