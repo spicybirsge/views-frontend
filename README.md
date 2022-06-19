@@ -1,2 +1,2 @@
 # views-frontend
-frontend server of views
+frontend server of views.
