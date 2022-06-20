@@ -92,11 +92,16 @@
     <%}%>
 
     <div class="mar">
+      <div class="flex-box">
+      <hr style="text-align:center;color:gray;background-color:gray"></div>
+      
           <% if(data) { %>
+         
             <% data.forEach(d => { %>
+             
                 
            <div class="flex-box">
-             <hr style="text-align:center;color:gray;background-color:gray">
+            
             <div class="cards" style="width: 20rem;  text-align: center;">
               <br>
             <h4 class="card-title"> <%= d.name %> </h4><br>
@@ -114,11 +119,15 @@
         </div>
   
      <br>
+     <hr style="text-align:center;color:gray;background-color:gray">
            </div>
 
       
             <% }) %>
-          <% } %>
+          <% } else { %> 
+            
+            <p class="h5" style="text-align: center;">No Cards Found, try Creating your first one :)</p>
+            <%}%>
         </div>
       </div>
       <br>
