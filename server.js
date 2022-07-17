@@ -4,7 +4,11 @@ const app = express()
 const logger = require('morgan');
 const cookies = require("cookie-parser")
 const cors = require('cors')
+const createDOMPurify = require('dompurify');
+const { JSDOM } = require('jsdom');
 
+const window = new JSDOM('').window;
+const DOMPurify = createDOMPurify(window);
 
 app.set('view-engine', 'ejs')
 app.use(cors())
@@ -332,7 +336,8 @@ await fetch(backend, {
   body: JSON.stringify({owner: owner, name: name})
 }).then(res => res.json()).then(async(data) => {
   if(data.success) {
-    return res.render('card.ejs', {data: data.data})
+    const html = DOMPurify.sanitize(data.data.description)
+    return res.render('card.ejs', {data: data.data, html: html})
   } else {
     return res.sendStatus(404)
   }

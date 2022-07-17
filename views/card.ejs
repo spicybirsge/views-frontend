@@ -81,7 +81,7 @@ border: 1px solid rgba(192, 192, 192, 0.829) !important;
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script>
   
-        const description = <%- JSON.stringify(data.description || 'Unknown Description').replace(new RegExp('<[^>]*>', 'g'), '') %>
+        const description = <%- JSON.stringify(html || 'Unknown Description') %>
     document.getElementById('md').innerHTML = marked.parse(description);
       </script>
       <style>
